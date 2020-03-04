@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [ $1 = "help" ]
+then
+    echo "Options:"
+    echo ""
+    echo "full"
+    echo "desktop"
+    echo "laptop"
+    echo "single"
+    echo ""
+fi
+
+if [ $1 = "full" ]
+then
+    xrandr --output LVDS-1 --auto
+    xrandr --output HDMI-1 --auto
+    xrandr --output VGA-1 --auto
+    xrandr --output HDMI-1 --left-of LVDS-1
+    xrandr --output VGA-1 --left-of HDMI-1
+fi
+
+if [ $1 = "desktop" ]
+then
+    xrandr --output LVDS-1 --off
+    xrandr --output HDMI-1 --auto
+    xrandr --output VGA-1 --auto
+    xrandr --output VGA-1 --left-of HDMI-1
+fi
+
+if [ $1 = "laptop" ]
+then
+    xrandr --output LVDS-1 --auto
+    xrandr --output HDMI-1 --off
+    xrandr --output VGA-1 --off
+fi
+
+if [ $1 = "single" ]
+then
+    xrandr --output LVDS-1 --off
+    xrandr --output HDMI-1 --auto
+    xrandr --output VGA-1 --off
+fi
